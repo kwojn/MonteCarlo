@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/jquery.jqplot.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Całkowanie metodą Monte Carlo</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Index</a></li>
+                        <li><a href="#about">Informacje</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+
+                    </ul>
+
+                </div><!--/.navbar-collapse -->
+            </div>
+        </div>
+
+
+ <hr>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="predefinedFunctions" class="control-label">Wybierz funkcję: </label>   
+                            <select class="form-control" id ="predefinedFunctions" name="predefinedFunctions">
+                            </select>
+                            <div class="well" id="functionInfo">
+                                <p><strong>Nazwa Funkcji: </strong><br><span id="functName"></span></p>
+                                <p><strong>Przedział całkowania: </strong><br><span id="integrateRange"></span></p>
+                                <p><strong>Równanie funkcji: </strong><br><span id="functionEquation"></span></p>
+                             </div>   
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="density">Maksymalna liczba punktów</label>
+                            <input class="form-control" type="number" min="1" max="1000000" name="density" id="density" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="stepTest">Liczba pomiarów dla punktu</label>
+                            <input class="form-control" type="number" min="1" max="100" name="stepTest" id="stepTest" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="stepCount">Liczba kroków</label>
+                            <input class="form-control" type="number" min="1" max="100" name="stepCount" id="stepCount" value="100">
+                        </div>
+                        <div class="form-group hidden">
+                            <label class="control-label" for="accuracy">Dokładność [liczba miejsc po przecinku]</label>
+                            <input class="form-control" type="number" min="1" max="10" name="accuracy" id="accuracy" value="4">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 col-lg-4">
+                                <button id="runComplexTest" class="btn-block btn">Start</button>
+                            </div>
+                        </div>
+                    </form> 
+                </div>   
+                <div class="col-md-8 col-lg-8">
+                    <div id="plotArea" class="block well"></div>
+                </div>
+                
+                <div class="col-md-8 col-lg-8">
+                    <div id="benchmarkPlotArea" class="block well"></div>
+                </div>
+                
+            </div>    
+            <hr>
+
+            <footer>
+                <p>&copy; Krzysztof Wojnarowski 2013</p>
+            </footer>
+        </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/vendor/excanvas.min.js"></script>
+        <script src="js/vendor/jquery.jqplot.min.js"></script>
+        <script src="js/vendor/plugins/jqplot.logAxisRenderer.js"></script>
+        <script src="js/vendor/dataSetFunctions.js"></script>
+        <script src="js/vendor/integrator.js"></script>
+        <script src="js/vendor/sqareIntegrator.js"></script>
+        <script src="js/vendor/monteCarlo.js"></script>
+        <script src="js/vendor/experimentProcessor.js"></script>
+        <script src="js/vendor/frontendController.js"></script>
+        <script src="js/main.js"></script>
+
+
+    </body>
+</html>

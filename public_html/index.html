@@ -39,8 +39,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Index</a></li>
-                        <li><a href="#about">Informacje</a></li>
+                        <li><a href="#">Index</a></li>
+                        <li><a href="#about">Opis</a></li>
+                        <li><a href="#conclusions">Wnioski</a></li>
                         <li><a href="#contact">Kontakt</a></li>
 
                     </ul>
@@ -50,7 +51,7 @@
         </div>
 
 
- <hr>
+        <hr>
 
         <div class="container">
             <div class="row">
@@ -64,8 +65,8 @@
                                 <p><strong>Nazwa Funkcji: </strong><br><span id="functName"></span></p>
                                 <p><strong>Przedział całkowania: </strong><br><span id="integrateRange"></span></p>
                                 <p><strong>Równanie funkcji: </strong><br><span id="functionEquation"></span></p>
-                             </div>   
-                            
+                            </div>   
+
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="density">Maksymalna liczba punktów</label>
@@ -93,12 +94,98 @@
                 <div class="col-md-8 col-lg-8">
                     <div id="plotArea" class="block well"></div>
                 </div>
-                
+
                 <div class="col-md-8 col-lg-8">
                     <div id="benchmarkPlotArea" class="block well"></div>
                 </div>
-                
-            </div>    
+
+            </div> 
+            <div class="row" id="about">
+                <article>
+                    <h2>Cel</h2>
+                    <p>Zbadanie przydatności całkowania metodą Monte Carlo.</p>
+                    <p>Celem tego eksperymentu jest zbadanie przydatności całkowania Metodą Monte Carlo. Dokładniej rzecz ujmując - jak dokładne wyniki jesteśmy w stanie uzyskać za pomocą tej metody, oraz gdzie jest granica opłacalności jej stosowania - czyli w jakich warunkach czasochłonność obliczeń nie daje zadawalających efektów, lub jest większa niż dla metody prostokątów.</p>
+                </article>
+                <article>
+                    <h2>Metoda Monte Carlo</h2>
+                    <p>Metoda Monte Carlo jest propabilistyczną metodą całkowania.</p>
+                    <p>Metoda ta polega na losowaniu punktów na płaszczyźnie ograniczonej wartościami funkcji i zakresem całkowania, a następnie zliczeniu punktów znajdujących się w obrębie całkowanej figury i podzieleniu jej przez liczbę wszystkich wylosowanych punktów. 
+                        Dzięki takiemu podejściu możemy w sposób przybliżony policzyć całkę funkcji, której policzenie metodami analitycznymi było by bardzo trudne. </p>
+                    <p>W niniejszym programie zastosowałem nieco zmienioną wersję tej metody (metoda Crude Monte Carlo), a mianowicie:
+                    <ul>
+                        <li>Wylosowałem punkty jednowymiarowe - odpowiadające wartościom na osi x</li>
+                        <li>Dla każdego z wylosowanych punktów policzyłem wartość funkcji w punkcie.</li>
+                        <li>Zliczyłem otrzymane wartości i podzieliłem przez liczbę punktów</li>
+                    </ul>
+                    <p>Dzięki zastosowanemu podejściu, zmniejszyłem złożoność obliczeniową, dzięki temu, że losujemy tylko jedną współrzędną a co za tym idzie zmniejszamy liczbę losowań przypadających na punkt. </p>
+
+                </article>
+                <article>
+                    <h2>Metoda prostokątów</h2>
+                    <p>Jest to metoda całkowania numerycznego wywodząca się wprost z definicji całki Riemanna.</p>
+                    <p>Metoda ta polega na podzieleniu przedziału całkowania na n równych elementów o szerokości dx, a następnie policzeniu i zsumowaniu pól prostokątów f(x)dx</p>
+                    <p>Otrzymujemy:</p>
+                    <table>
+                        <tr>
+                            <td>i=n</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 0"><span style="font-size: 32px">&Sigma;</span><td>
+                             <td>f(x<sub>i</sub>)dx<sub>i</sub></td>   
+                        </tr>
+                        <tr>
+                            <td>i=0</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <p> co dla dx<sub>i</sub> ->0 i n->&infin; przechodzi w całkę:</p>
+                    <table>
+                        <tr>
+                            <td>b</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 0"><span style="font-size: 32px">&Integral;</span><td>
+                             <td>f(x)dx</td>   
+                        </tr>
+                        <tr>
+                            <td>a</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <p> gdzie a i b są granicami przedziału w którym całkujemy</p>
+                    <p>Jeśli więc ustalimy bardzo gęsty podział przedziału całkowania symbolicujący dx dążące do 0, możemy otrzymać bardzo dokładny wynik całkowania - w niniejszym programie całkowanie analityczne, zostało przybliżone całkowaniem właśnie tą metodą ze względu na łatwość implementacji oraz bardzo dobre wyniki przy odpowiednio drobnym podziale przedziału całkowania.</p>
+                    <p>Metoda ta swą dokładność okupuje dużą złożonością obliczeniową, przekładającą się na czas wykonania programu.</p>
+                </article>
+
+                <article>
+                    <h2>Opis układu pomiarowego</h2>
+                    <p>Układem pomiarowym jest program napisany w języku JavaScript. Program umożliwia badanie dokładności i wydajności metody Monte Carlo w porównaniu z metodą całkowania metodą prostokątów.</p>
+                    <p>Na potrzeby programu, całkowanie metodą prostokątów zostało potraktowane jako całkowanie w sposób analityczny.
+                        Usprawideliwieniem tego zachowania jest prostota implementacji całkowania metodą prostokątów, oras intuicyjna zbieżność metody do całki Rimanna, w rzypadku dobrania odpowiednio małych przedziałów.
+                        W aplikacji liczba punktów pomiarowych do metody prostokątów wynosi 10<sup>6</sup>, co przy małym przedziale całkowania daje dobre odzwierciedlenie metod analitycznych</p>
+                    <h3>Pola aplikacji</h3>
+                    <p>Główne pola aplikacji to:</p>
+                    <ul>
+                        <li><a href="#predefinedFunctions">Pole wyboru funckcji</a> - umożliwia wybór jednej z predefiniowanych funkcji.Opis wybranej funkcji znajduje się w ramce pod polem</li>
+                        <li><a href="#density">Pole wyboru maksymalnej liczby punktów</a> - to pole umożliwia wybór liczby punktów, które będą losowane dla metody Monte Carlo. Jest to liczba maksymalna dla której będą prowadzone obliczenia</li>
+                        <li><a href="#stepTest">Liczba pomiarów dla punktu</a> - liczba powtórzeń pomiarów dla zadanej liczby punktów</li>
+                        <li><a href="#stepCount">Liczba kroków</a> - liczba kroków w których układ ma zakończyć obliczenia, przechodząc od pomiaru dla jednego punktu, do maksymalnej liczby punktów okreslonych przez pole <a href="#density">Pole wyboru maksymalnej liczby punktów</a> </li>                </ul>    
+
+                    <h3>Działanie aplikacji</h3>
+                    <p>Po ustaleniu parametrów w formularzu i uruchomieniu poprzez przycisk <a href="#runComplexTest">start</a>,
+                        metodą prostokątów obliczna jest całka badanej funkcji oraz mierzony jest czas obliczeń. W kolejnym kroku dla każdej liczby punktów, kilkakrotnie, obliczana jest całka metodą Monte Carlo. Dla każdej liczby punktów, na podstawie pomiarów, liczone jest odchylenie standardowe od wartości oczekiwanej (wartości będącej wynikiem całkowania metodą prostokątów ).Dodatkowo dla każdej liczby punktów, liczony jest czas potrzebny na obliczenia za pomocą metody Monte Carlo.Finalnie, na górnym wykresie odłożone jest odchylenie standardowe dla każdej liczby punktów w metodzie Monte Carlo, natomiast na dolnym wykresie odłożone są czasy potrzebne na całkowanie (dla metody Monte Carlo i prostokątów ). </p>
+                </article> 
+                <article id="conclusions">
+                    <h2>Wnioski</h2>
+                    <p>Pierwszym nasuwającym się wnioskiem jest to iż, metodą Monte Carlo można uzyskać bardzo dokładne przybliżenie, w bardzo krótkim czasie - wyraźnie widać to patrząc na wykresy dla 1000 <a href="#density">punktów pomiarowych</a>. </p>
+                    <p>Kolejną obserwacją, jest to iż, czas potrzebny na obliczenia dla Metody Monte Carlo, jest zdecydowanie mniejszy niż czas potrzebny dla metody prostokątów, czasy te zaczynają być porównywalne dopiero w okolicach 10<sup>6</sup> liczby punktów. Zysk czasowy jest tym większy im bardziej skomplikowaną całkę liczymy, żądając zadanej dokładności. Dodatkowo możemy zauważyć że w tym punkcie przestaje być opłacalne - dzieje się tak ponieważ nadal mamy niezerowy błąd metody, przy czym liczba obliczeń jest taka sama jak dla "pewnej" metody prostokątów. </p>
+                    <p>Ciekawe i wart zauważenia jest również fakt iż błąd metody Monte Carlo względem metody prostokątów ma postać &sigma; = C/&Sqrt;N . Gdzie N jest liczbą punktów dla Metody Monte Carlo, a C zależy od postaci funkcji. Zauważmy że C jest tym mniejsze im większa jest dynamika zmian funkcj w zakresie całkowania.</p>
+                    <p>Pytanie skąd biorą się zmiany współczynnika C?</p>  
+                    <p>Odpowiedź może tkwić w fakcie iż metoda prostokątów do której porównujemy, jest nadal metodą numeryczną, obarczoną błędem względem "prawdziwych" metod analitycznych. Wynika stąd iż metoda prostokątów przestaje być dobrym przybliżeniem metod analitycznych dla bardziej skomplikowanych funkcji.</p>
+                </article>
+            </div>
             <hr>
 
             <footer>

@@ -13,7 +13,8 @@ function ExperimentProcessor(){
     self.experimentResult = {
         sigmaSquare:[],
         testTime:[],
-        refferenceTime:[]
+        refferenceTime:[],
+        nRoot:[]
         
     };
     
@@ -64,6 +65,8 @@ function ExperimentProcessor(){
             self.experimentResult.sigmaSquare.push([Math.round(currentDensity),Math.sqrt(sigmaSquare)]);
             self.experimentResult.testTime.push([Math.round(currentDensity),testTime]);
             self.experimentResult.refferenceTime.push([Math.round(currentDensity),reffrenceTime]);
+            self.experimentResult.nRoot.push([Math.round(currentDensity),1/Math.sqrt(currentDensity)]);
+          
             // increase density with step
             currentDensity+=Math.round(self.densityStep);
             

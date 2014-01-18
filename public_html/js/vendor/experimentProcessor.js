@@ -30,6 +30,15 @@ function ExperimentProcessor(){
         //refference - this is refference integrator - treated as analitical
         var refference = new SquareIntegrator();
         refference = refference.buildFromDataSet(self.functionProcessed);
+        // if integrate is already given
+        if (self.functionProcessed.expected!==false){
+            refference.process = function(){
+                refference.integrate = self.functionProcessed.expected;
+                return self.functionProcessed.expected;
+            };
+        };
+        
+        
         // this density is hardcoded since we assume we Integrate with sqare method based on Riemann's concept of Integral
         refference.setDensity(1000000);
         // in order to test methods efficiency - we will mesure how long does it take to preform 
@@ -52,7 +61,7 @@ function ExperimentProcessor(){
             estimated.setDensity(currentDensity);
             // run experiment  n times
             for (var nth=0;nth<self.elemetaryIterationCount;nth++){
-                if (nth==0){
+                if (nth===0){
                     var testStartTime = new Date();
                     estimated.process();
                     var testEndTime = new Date();
@@ -71,9 +80,10 @@ function ExperimentProcessor(){
             currentDensity+=Math.round(self.densityStep);
             
         }     
-     console.log("done");
-     console.log(self); 
+        return new Array(estimated,expected,Math.sqrt(sigmaSquare),self.functionProcessed);
     };
+    
+    
     
     
     

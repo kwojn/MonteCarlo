@@ -11,10 +11,12 @@
             density: 10000,
             funct: function(r) {
                 return Math.PI * Math.pow(r, 2);
-            }
+            },
+            expected:false
         },
         {
             functionName: "triangle",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -26,6 +28,7 @@
         },
         {
             functionName: "wave",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -37,6 +40,7 @@
         },
         {
             functionName: "complex",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -48,6 +52,7 @@
         },
          {
             functionName: "wide Sine",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -59,6 +64,7 @@
         },
         {
             functionName: "thin Sine",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -70,6 +76,7 @@
         },
         {
             functionName: "const",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -81,6 +88,7 @@
         },
         {
             functionName: "power Sine",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1
@@ -92,6 +100,7 @@
         },
         {
             functionName: "discreete",
+            expected:false,
             range: {
                 bottom: 0,
                 top: 1

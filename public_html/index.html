@@ -58,6 +58,34 @@
                 <div class="col-lg-4 col-md-4">
                     <form action="#" method="post">
                         <div class="form-group">
+                            <label class="control-label">
+                                Sposób wprowadzania danych
+                            </label> 
+                            <div class="radio">
+                                <label for="inputSelect1" >
+                                    <input type="radio" id="inputSelect1" value="manual" name="inputSelect">   
+                                    Ręczne wprowadzanie danych
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="inputSelect2">
+                                    <input type="radio" id="inputSelect2" value="predefined" name="inputSelect" checked="checked" >   
+                                    Predefiniowana funkcja
+                                </label>
+                            </div>
+                        </div>
+                        <div id="manualInputSet" class="form-group hidden">
+                            <label class="control-label">Postać funkcji:</label>
+                            <input value="x" type="text" class="form-control" name="integratedFunction" id="integratedFunction">
+                            <label class="control-label">Dolna granica:</label>
+                            <input value ="0" name="bottomBoundary" class="form-control" id="bottomBoundary" type="number">
+                            <label class="control-label">Górna granica:</label>
+                            <input value="1" type="number" class="form-control" id="topBoundary" name="topBoundary">
+                            <label class="control-label">Wartość całki:</label>
+                            <input value ="0.5" type="number" class="form-control" id="expectedValue" name="expectedValue">
+
+                        </div>
+                        <div id="predefinedInputSet" class="form-group">
                             <label for="predefinedFunctions" class="control-label">Wybierz funkcję: </label>   
                             <select class="form-control" id ="predefinedFunctions" name="predefinedFunctions">
                             </select>
@@ -98,6 +126,12 @@
                 <div class="col-md-8 col-lg-8">
                     <div id="benchmarkPlotArea" class="block well"></div>
                 </div>
+                <div class="col-md-8 col-lg-8">
+                    <div class="label label-default">Konsola Wyników:</div>
+                    <div class="well" id="resultConsole" style="height:300px;overflow-y:auto; ">
+                        
+                    </div>
+                </div>    
 
             </div> 
             <div class="row" id="about">
@@ -132,7 +166,7 @@
                         </tr>
                         <tr>
                             <td style="line-height: 0"><span style="font-size: 32px">&Sigma;</span><td>
-                             <td>f(x<sub>i</sub>)dx<sub>i</sub></td>   
+                            <td>f(x<sub>i</sub>)dx<sub>i</sub></td>   
                         </tr>
                         <tr>
                             <td>i=0</td>
@@ -147,7 +181,7 @@
                         </tr>
                         <tr>
                             <td style="line-height: 0"><span style="font-size: 32px">&Integral;</span><td>
-                             <td>f(x)dx</td>   
+                            <td>f(x)dx</td>   
                         </tr>
                         <tr>
                             <td>a</td>

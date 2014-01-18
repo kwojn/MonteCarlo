@@ -4,6 +4,7 @@ function SquareIntegrator(){
     var parent = new Integrator(self);
 
     self.process = function(){
+        
         var ret = 0;
         for (var i = 0; i < self.density; i++) {
             var x=i*((self.range[1] - self.range[0])/self.density);
